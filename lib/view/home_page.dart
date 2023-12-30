@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:restapi/model/post.dart';
-import 'package:restapi/service/remode.dart';
+import 'package:restapi/services/remode.dart';
 
 class Homepage extends StatefulWidget {
+  static const routeName = '/Homepage';
   const Homepage({super.key});
 
   @override

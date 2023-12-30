@@ -1,38 +1,63 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:restapi/inner_screens/categories.dart';
+import 'package:restapi/provider/dark_theme_provider.dart';
+import 'package:restapi/screens/auth/loginscreen.dart';
+import 'package:restapi/screens/auth/registerscreen.dart';
 import 'package:restapi/view/home_page.dart';
+import 'package:restapi/welcomeScreen.dart';
+import 'consts/theme_data.dart';
+import 'screens/auth/forget_pass.dart';
 
 void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class MyApp extends StatefulWidget {
+  const MyApp({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  DarkThemeProvider themeChangeProvider = DarkThemeProvider();
+
+  void getCurrentAppTheme() async {
+    themeChangeProvider.setDarkTheme =
+        await themeChangeProvider.darkThemePrefs.getTheme();
+  }
+
+  @override
+  void initState() {
+    getCurrentAppTheme();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a purple toolbar. Then, without quitting the app,
-        // try changing the seedColor in the colorScheme below to Colors.green
-        // and then invoke "hot reload" (save your changes or press the "hot
-        // reload" button in a Flutter-supported IDE, or press "r" if you used
-        // the command line to start the app).
-        //
-        // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
-        // restart instead.
-        //
-        // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: const Homepage(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) {
+          return themeChangeProvider;
+        })
+      ],
+      child:
+          Consumer<DarkThemeProvider>(builder: (context, themeProvider, child) {
+        return MaterialApp(
+            debugShowCheckedModeBanner: false,
+            title: 'Flutter Demo',
+            theme: Styles.themeData(themeProvider.getDarkTheme, context),
+            home: const WelcomeScreen(),
+            routes: {
+              //Homepage.routeName: (ctx) => const Homepage(),
+              CategoriesScreen.routeName: (ctx) => CategoriesScreen(),
+              RegScreen.routeName: (ctx) => const RegScreen(),
+              LoginScreen.routeName: (ctx) => const LoginScreen(),
+              ForgetPasswordScreen.routeName: (ctx) =>
+                  const ForgetPasswordScreen(),
+            });
+      }),
     );
   }
 }
