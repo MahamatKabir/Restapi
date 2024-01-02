@@ -21,7 +21,7 @@ class AuthButton extends StatelessWidget {
           ),
           onPressed: () {
             fct();
-            // _submitFormOnLogin();
+            //_submitFormOnLogin();
           },
           child: TextWidget(
             text: buttonText,

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:restapi/inner_screens/categories.dart';
 import 'package:restapi/provider/dark_theme_provider.dart';
 import 'package:restapi/screens/auth/loginscreen.dart';
 import 'package:restapi/screens/auth/registerscreen.dart';
 import 'package:restapi/view/home_page.dart';
+import 'package:restapi/view/restaurant.dart';
 import 'package:restapi/welcomeScreen.dart';
 import 'consts/theme_data.dart';
 import 'screens/auth/forget_pass.dart';
@@ -50,8 +50,9 @@ class _MyAppState extends State<MyApp> {
             theme: Styles.themeData(themeProvider.getDarkTheme, context),
             home: const WelcomeScreen(),
             routes: {
-              //Homepage.routeName: (ctx) => const Homepage(),
-              CategoriesScreen.routeName: (ctx) => CategoriesScreen(),
+              RestaurantListPage.routeName: (ctx) =>
+                  const RestaurantListPage(restaurantData: []),
+              Homepage.routeName: (ctx) => const Homepage(),
               RegScreen.routeName: (ctx) => const RegScreen(),
               LoginScreen.routeName: (ctx) => const LoginScreen(),
               ForgetPasswordScreen.routeName: (ctx) =>

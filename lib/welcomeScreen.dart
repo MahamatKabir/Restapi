@@ -13,8 +13,8 @@ class WelcomeScreen extends StatelessWidget {
         width: double.infinity,
         decoration: const BoxDecoration(
             gradient: LinearGradient(colors: [
-          Color(0xffB81736),
-          Color(0xff281537),
+          Color(0xffFC4401),
+          Color.fromARGB(255, 247, 204, 188),
         ])),
         child: Column(children: [
           const Padding(
@@ -48,7 +48,7 @@ class WelcomeScreen extends StatelessWidget {
                   style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
-                      color: Colors.white),
+                      color: Color.fromARGB(255, 0, 0, 0)),
                 ),
               ),
             ),
