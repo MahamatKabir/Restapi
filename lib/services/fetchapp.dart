@@ -102,7 +102,7 @@ Future<bool> SignUser(SignData signData) async {
 
 Future<List<Restaurant>> fetchRestaurantData() async {
   String authToken =
-      'Bearer 93|cdm6GMooms5N77glEoeiTTnXmfQPpZmOiiSdq5tU4f97d131';
+      'Bearer 175|1ZRXn60pfG0ADsBv9pLiKXlkSjxOZlQfXWtnqs0Cd1009916';
   var response = await http.get(
     Uri.parse('https://marketplace.jibaleysolution.com/api/v1/restaurants'),
     headers: {
@@ -126,7 +126,7 @@ Future<List<Restaurant>> fetchRestaurantData() async {
 Future<void> logOut(BuildContext context) async {
   // Replace 'YOUR_AUTH_KEY' with the actual authentication key/token
   String authToken =
-      'Bearer 93|cdm6GMooms5N77glEoeiTTnXmfQPpZmOiiSdq5tU4f97d131';
+      'Bearer 175|1ZRXn60pfG0ADsBv9pLiKXlkSjxOZlQfXWtnqs0Cd1009916';
 
   var url =
       Uri.parse('https://marketplace.jibaleysolution.com/api/v1/auth/logout');
